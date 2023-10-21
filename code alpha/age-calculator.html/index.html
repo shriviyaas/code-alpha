@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            margin: 10px;
+            font-size: 18px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Age Calculator</h1>
+    <p>Enter your date of birth:</p>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="text" id="dob" placeholder="MM/DD/YYYY">
+
+    <button onclick="calculateAge()">Calculate Age</button>
+
+    <p id="result"></p>
+
+    <script>
+        function calculateAge() {
+            var dob = document.getElementById('dob').value;
+            var dobDate = new Date(dob);
+
+            if (isNaN(dobDate)) {
+                document.getElementById('result').innerHTML = 'Please enter a valid date (MM/DD/YYYY)';
+                return;
+            }
+
+            var today = new Date();
+            var age = today.getFullYear() - dobDate.getFullYear();
+            var m = today.getMonth() - dobDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+                age--;
+            }
+
+            document.getElementById('result').innerHTML = 'Your age is: ' + age + ' years';
+        }
+    </script>
+</body>
+</html>
